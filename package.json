@@ -8,7 +8,8 @@
     "build": "tsc && vite build",
     "lint": "eslint src --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "prettier": "prettier --write --ignore-unknown ./src",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "deploy": "cross-env NODE_ENV=prod node ./scripts/deploy.js"
   },
   "dependencies": {
     "@vitejs/plugin-react": "^4.0.4",
