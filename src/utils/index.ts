@@ -1,0 +1,1 @@
+export { parseRoutes } from "./parseRoutes";
