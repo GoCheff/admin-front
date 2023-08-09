@@ -1,10 +1,15 @@
-import { S } from "./styles";
+import { Fragment } from "react";
 
-function App() {
+import { Router } from "../Router";
+
+import { GlobalStyle } from "../ui/styles/globalStyle";
+
+function App(): JSX.Element {
   return (
-    <S.C.App>
-      <S.C.Title>Admin front</S.C.Title>
-    </S.C.App>
+    <Fragment>
+      <GlobalStyle />
+      <Router />
+    </Fragment>
   );
 }
 
