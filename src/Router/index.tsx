@@ -2,7 +2,7 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
 import { LoadingVariants as Loading } from "../ui/components/Loading";
 
-import { env } from "../data/env";
+import { env } from "../data";
 
 import { routes } from "./data";
 

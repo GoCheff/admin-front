@@ -23,4 +23,8 @@ export default defineConfig({
     outDir: "dist",
     assetsDir: "assets-admin",
   },
+  server: {
+    port: 3000,
+  },
+  base: "/admin",
 });

@@ -1,17 +1,55 @@
 import { RouteObject } from "react-router-dom";
 
+import { AuthTemplate, NonAuthTemplate } from "../templates";
+
+import { getAuthData } from "../utils";
+
 const routes: RouteObject[] = [
   {
-    path: "/",
+    id: "non-auth",
     loader: async () => {
-      await new Promise((resolve) => setTimeout(resolve, 20000));
-      return null;
+      const user = await getAuthData();
+
+      if (!user) {
+        return null;
+      }
+
+      return {
+        user,
+        redirect: "/",
+      };
     },
-    element: (
-      <div>
-        <h1>Home</h1>
-      </div>
-    ),
+    element: <NonAuthTemplate />,
+    children: [
+      {
+        path: "/login",
+        element: <div>Login</div>,
+      },
+    ],
+  },
+  {
+    id: "auth",
+    loader: async () => {
+      const user = await getAuthData();
+
+      if (user) {
+        return {
+          user,
+        };
+      }
+
+      return {
+        user: null,
+        redirect: "/login",
+      };
+    },
+    element: <AuthTemplate />,
+    children: [
+      {
+        path: "/",
+        element: <div>Home</div>,
+      },
+    ],
   },
 ];
 
