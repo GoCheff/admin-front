@@ -1,16 +1,16 @@
-import { Navigate, Outlet, useLoaderData } from "react-router-dom";
+import { Navigate, Outlet, useRouteLoaderData } from "react-router-dom";
 
-import { LoadingVariants as Loading } from "../../ui/components/Loading";
+import { LoadingVariants as Loading } from "../../ui/components";
 
 function AuthTemplate(): JSX.Element {
-  const servedUser = useLoaderData() as {
-    user: any;
-    redirect?: string;
+  const { user, redirect } = useRouteLoaderData("root") as {
+    user?: any;
+    redirect: string;
   };
 
-  if (servedUser && servedUser.redirect) {
+  if (!user) {
     Navigate({
-      to: servedUser.redirect,
+      to: redirect,
     });
 
     return <Loading.Screen />;

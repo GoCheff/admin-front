@@ -3,7 +3,7 @@ async function getAuthData() {
   const getUser = async () => {
     await new Promise((resolve) => setTimeout(resolve, 3000));
 
-    return true;
+    return false;
   };
 
   try {

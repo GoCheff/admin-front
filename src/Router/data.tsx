@@ -6,12 +6,14 @@ import { getAuthData } from "../utils";
 
 const routes: RouteObject[] = [
   {
-    id: "non-auth",
+    id: "root",
     loader: async () => {
       const user = await getAuthData();
 
       if (!user) {
-        return null;
+        return {
+          redirect: "/login",
+        };
       }
 
       return {
@@ -19,35 +21,29 @@ const routes: RouteObject[] = [
         redirect: "/",
       };
     },
-    element: <NonAuthTemplate />,
     children: [
       {
-        path: "/login",
-        element: <div>Login</div>,
+        element: <NonAuthTemplate />,
+        children: [
+          {
+            path: "/login",
+            element: <div>Login</div>,
+          },
+        ],
       },
-    ],
-  },
-  {
-    id: "auth",
-    loader: async () => {
-      const user = await getAuthData();
-
-      if (user) {
-        return {
-          user,
-        };
-      }
-
-      return {
-        user: null,
-        redirect: "/login",
-      };
-    },
-    element: <AuthTemplate />,
-    children: [
       {
-        path: "/",
-        element: <div>Home</div>,
+        element: <AuthTemplate />,
+        loader: () => {
+          return {
+            needAuth: true,
+          };
+        },
+        children: [
+          {
+            path: "/",
+            element: <div>Home</div>,
+          },
+        ],
       },
     ],
   },
