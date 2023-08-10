@@ -2,6 +2,10 @@ import { Navigate, Outlet, useRouteLoaderData } from "react-router-dom";
 
 import { LoadingVariants as Loading } from "../../ui/components";
 
+import { Header } from "./components/Header";
+
+import { S } from "./styles";
+
 function NonAuthTemplate(): JSX.Element {
   const { user, redirect } = useRouteLoaderData("root") as {
     user?: any;
@@ -16,7 +20,14 @@ function NonAuthTemplate(): JSX.Element {
     return <Loading.Screen />;
   }
 
-  return <Outlet />;
+  return (
+    <S.Container>
+      <S.Wrapper>
+        <Header />
+        <Outlet />
+      </S.Wrapper>
+    </S.Container>
+  );
 }
 
 export { NonAuthTemplate };
