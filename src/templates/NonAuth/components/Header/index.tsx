@@ -6,7 +6,7 @@ function Header(): JSX.Element {
   return (
     <S.C.Header>
       <Icon name="logo" fill="primary" width="205px" height="146px" />
-      <nav>
+      <S.C.Nav>
         <S.C.Ul>
           <li>
             <S.C.Link to="/login" end>
@@ -14,12 +14,12 @@ function Header(): JSX.Element {
             </S.C.Link>
           </li>
           <li>
-            <S.C.Link to="/register" end>
+            <S.C.Link to="/cadastro" end>
               Cadastrar
             </S.C.Link>
           </li>
         </S.C.Ul>
-      </nav>
+      </S.C.Nav>
     </S.C.Header>
   );
 }

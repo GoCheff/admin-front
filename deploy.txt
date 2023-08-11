@@ -1,0 +1,1 @@
+npm run build && mv dist/index.html dist/index-admin.html && scp -r dist/* root@24.199.113.72:/var/www/html

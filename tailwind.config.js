@@ -16,6 +16,13 @@ export default {
         4: "inset 0 -10px 5px 0 rgba(175, 175, 175, 0.25)",
         5: "0 4px 4px 0 rgba(0, 0, 0, 0.25), inset 0 -10px 5px 0 rgba(175, 175, 175, 0.25)",
       },
+      dropShadow: {
+        DEFAULT: "0 4px 4px 0 rgba(0, 0, 0, 0.1)",
+        2: "0 30px 60px 0 rgba(57, 57, 57, 0.1)",
+        3: "0 4px 4px 0 rgba(0, 0, 0, 0.25)",
+        4: "inset 0 -10px 5px 0 rgba(175, 175, 175, 0.25)",
+        5: "0 4px 4px 0 rgba(0, 0, 0, 0.25), inset 0 -10px 5px 0 rgba(175, 175, 175, 0.25)",
+      },
       colors: {
         primary: {
           DEFAULT: "#D68606",
