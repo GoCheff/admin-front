@@ -25,7 +25,16 @@ export default {
       },
       colors: {
         primary: {
+          900: "#2b1b01",
+          800: "#563602",
+          700: "#805004",
+          600: "#ab6b05",
           DEFAULT: "#D68606",
+          400: "#de9e38",
+          300: "#e6b66a",
+          200: "#efcf9b",
+          100: "#f3dbb4",
+          50: "#fbf3e6",
         },
         secondary: {
           DEFAULT: "#FFCB83",

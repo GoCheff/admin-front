@@ -1,4 +1,4 @@
-import { PropsWithChildren } from "react";
+import { Fragment, PropsWithChildren } from "react";
 
 import { Screen } from "./components/Screen";
 
@@ -7,18 +7,26 @@ import { S } from "./styles";
 interface LoadingProps extends PropsWithChildren {
   disabled?: boolean;
   type?: "Screen";
+  size?: "small" | "medium" | "large";
 }
 
-function Loading({ children, disabled, type }: LoadingProps): JSX.Element {
+function Loading({
+  children,
+  disabled,
+  type,
+  size = "medium",
+}: LoadingProps): JSX.Element {
   if (type === "Screen") {
     return (
       <Screen>
-        <Loading disabled={disabled}>{children}</Loading>
+        <Loading disabled={disabled} size={size}>
+          {children}
+        </Loading>
       </Screen>
     );
   }
 
-  return <S.Spinner>{disabled && children}</S.Spinner>;
+  return <Fragment>{disabled ? children : <S.Spinner size={size} />}</Fragment>;
 }
 
 const LoadingVariants = {
