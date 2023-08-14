@@ -21,7 +21,12 @@ function Button({
   loadingSize = "small",
 }: ButtonProps): JSX.Element {
   return (
-    <S.C.Button type={type} onClick={onClick} disabled={disabled}>
+    <S.C.Button
+      type={type}
+      onClick={onClick}
+      disabled={disabled}
+      loading={loading}
+    >
       <Loading disabled={!loading} size={loadingSize}>
         {children}
       </Loading>
