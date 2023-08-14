@@ -23,12 +23,13 @@ function LoginPage() {
     return !!(
       !watch("email") ||
       !watch("password") ||
-      Object.keys(errors).length
+      Object.keys(errors).length ||
+      isSubmitting
     );
   }
 
   return (
-    <Form handleSubmit={handleSubmit(onSubmit)}>
+    <Form handleSubmit={handleSubmit(onSubmit)} submitDisabled={isSubmitting}>
       <Input
         register={register("email", {
           required: true,

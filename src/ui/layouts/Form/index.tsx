@@ -4,9 +4,14 @@ import { S } from "./styles";
 
 interface FormProps extends PropsWithChildren {
   handleSubmit: (e?: React.BaseSyntheticEvent) => Promise<void>;
+  submitDisabled: boolean;
 }
 
-function Form({ children, handleSubmit }: FormProps): JSX.Element {
+function Form({
+  children,
+  handleSubmit,
+  submitDisabled,
+}: FormProps): JSX.Element {
   const formRef = useRef<HTMLFormElement>(null);
   const [isFormOrChildFocused, setIsFormOrChildFocused] = useState(false);
 
@@ -25,7 +30,7 @@ function Form({ children, handleSubmit }: FormProps): JSX.Element {
   }
 
   function handleKeyPress(e: KeyboardEvent) {
-    if (!(e.key === "Enter" && isFormOrChildFocused)) {
+    if (e.key !== "Enter" || isFormOrChildFocused || submitDisabled) {
       return;
     }
 
