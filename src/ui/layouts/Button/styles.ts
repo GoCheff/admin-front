@@ -3,7 +3,7 @@ import styled from "styled-components";
 import tw from "twin.macro";
 
 interface ButtonProps {
-  loading?: boolean;
+  loading?: number;
 }
 
 const Button = styled.button<ButtonProps>`

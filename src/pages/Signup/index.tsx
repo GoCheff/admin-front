@@ -1,5 +1,5 @@
 function SignupPage() {
-  return <div>Cadastro</div>;
+  return <div>Desculpe, essa página ainda não foi implementada :(</div>;
 }
 
 export { SignupPage };

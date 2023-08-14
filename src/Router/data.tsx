@@ -2,8 +2,9 @@ import { RouteObject } from "react-router-dom";
 
 import { AuthTemplate, NonAuthTemplate } from "../templates";
 
+import { HomePage, LoginPage, SignupPage } from "../pages";
+
 import { getAuthData } from "../utils";
-import { LoginPage, SignupPage } from "../pages";
 
 const routes: RouteObject[] = [
   {
@@ -51,7 +52,7 @@ const routes: RouteObject[] = [
         children: [
           {
             path: "/",
-            element: <div>Home</div>,
+            element: <HomePage />,
           },
         ],
       },

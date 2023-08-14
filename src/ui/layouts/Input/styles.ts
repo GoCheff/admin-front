@@ -7,13 +7,13 @@ const LabelText = styled.span`
 `;
 
 const Input = styled.input`
-  ${tw`py-2 font-semibold border-b border-black focus:outline-none focus:border-primary rounded-sm transition-all duration-300 ease-in-out`}
+  ${tw`py-2 font-semibold border-b border-black focus:outline-none focus:border-primary rounded-sm transition-all duration-300 ease-in-out disabled:opacity-50 disabled:cursor-auto`}
 `;
 
 interface LabelProps {
-  focus: boolean;
-  filled: boolean;
-  error: boolean;
+  focus: number;
+  filled: number;
+  error: number;
 }
 
 const Label = styled.label<LabelProps>`

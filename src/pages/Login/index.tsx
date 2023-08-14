@@ -1,8 +1,9 @@
-import { useForm } from "react-hook-form";
+import { FieldValues, useForm } from "react-hook-form";
 
 import { Spacer } from "../../ui/components";
 
 import { Button, Form, Input } from "../../ui/layouts";
+
 import { wait } from "../../utils";
 
 function LoginPage() {
@@ -13,7 +14,7 @@ function LoginPage() {
     formState: { errors, isSubmitting },
   } = useForm();
 
-  async function onSubmit(data: any) {
+  async function onSubmit(data: FieldValues) {
     await wait({ time: 3000 });
 
     console.log({ data });
@@ -38,6 +39,7 @@ function LoginPage() {
         value={watch("email")}
         label="Email"
         error={errors.email}
+        disabled={isSubmitting}
       />
       <Input
         register={register("password", {
@@ -47,6 +49,7 @@ function LoginPage() {
         label="Senha"
         type="password"
         error={errors.password}
+        disabled={isSubmitting}
       />
       <Spacer size={3} />
       <Button

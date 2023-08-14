@@ -2,6 +2,8 @@ import { PropsWithChildren } from "react";
 
 import { Loading } from "../../components";
 
+import { toProps } from "../../../utils";
+
 import { S } from "./styles";
 
 interface ButtonProps extends PropsWithChildren {
@@ -25,7 +27,7 @@ function Button({
       type={type}
       onClick={onClick}
       disabled={disabled}
-      loading={loading}
+      loading={toProps(loading)}
     >
       <Loading disabled={!loading} size={loadingSize}>
         {children}

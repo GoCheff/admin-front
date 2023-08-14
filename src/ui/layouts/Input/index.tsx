@@ -7,6 +7,8 @@ import {
   UseFormRegisterReturn,
 } from "react-hook-form";
 
+import { toProps } from "../../../utils";
+
 import { S } from "./styles";
 
 interface InputProps extends PropsWithChildren {
@@ -19,6 +21,8 @@ interface InputProps extends PropsWithChildren {
   showErrors?: boolean;
   error?: FieldError | Merge<FieldError, FieldErrorsImpl<any>> | undefined;
   customError?: string;
+  disabled?: boolean;
+  loading?: boolean;
 }
 
 function Input({
@@ -31,6 +35,7 @@ function Input({
   showErrors = true,
   error,
   customError,
+  disabled = false,
 }: InputProps): JSX.Element {
   const [focus, setFocus] = useState(false);
 
@@ -51,15 +56,22 @@ function Input({
 
   return (
     <div>
-      <S.C.Label focus={focus} filled={!!value} error={hasError}>
+      <S.C.Label
+        focus={toProps(focus)}
+        filled={toProps(value)}
+        error={toProps(hasError)}
+      >
         {label && (
-          <S.LabelText onClick={() => setFocus(true)}>{label}</S.LabelText>
+          <S.LabelText onClick={() => !disabled && setFocus(true)}>
+            {label}
+          </S.LabelText>
         )}
         <S.C.Input
           type={type}
           {...register}
-          onFocus={() => setFocus(true)}
-          onBlur={() => setFocus(false)}
+          onFocus={() => !disabled && setFocus(true)}
+          onBlur={() => !disabled && setFocus(false)}
+          disabled={disabled}
         />
         {showErrors && (
           <S.Error>{customError || errorTypes[errorType] || ""}</S.Error>
