@@ -11,9 +11,9 @@ const Input = styled.input`
 `;
 
 interface LabelProps {
-  $focus: number;
-  $filled: number;
-  $error: number;
+  $focus: boolean;
+  $filled: string;
+  $error: boolean;
 }
 
 const Label = styled.label<LabelProps>`

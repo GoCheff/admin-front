@@ -12,12 +12,12 @@ async function getCheffsData() {
       {
         id: 2,
         name: "Cheff 2",
-        foodType: "Italiana",
+        foodType: "Brasileira",
       },
       {
         id: 3,
         name: "Cheff 3",
-        foodType: "Italiana",
+        foodType: "Japonesa",
       },
     ];
   };

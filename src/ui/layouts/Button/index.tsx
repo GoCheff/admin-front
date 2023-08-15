@@ -2,8 +2,6 @@ import { PropsWithChildren } from "react";
 
 import { Loading } from "../../components";
 
-import { toProps } from "../../../utils";
-
 import { S } from "./styles";
 
 interface ButtonProps extends PropsWithChildren {
@@ -12,6 +10,7 @@ interface ButtonProps extends PropsWithChildren {
   disabled?: boolean;
   loading?: boolean;
   loadingSize?: "small" | "medium" | "large";
+  size?: "small" | "medium" | "large";
 }
 
 function Button({
@@ -21,13 +20,15 @@ function Button({
   disabled = false,
   loading = false,
   loadingSize = "small",
+  size = "medium",
 }: ButtonProps): JSX.Element {
   return (
     <S.C.Button
       type={type}
       onClick={onClick}
       disabled={disabled}
-      loading={toProps(loading)}
+      $loading={loading}
+      $size={size}
     >
       <Loading disabled={!loading} size={loadingSize}>
         {children}

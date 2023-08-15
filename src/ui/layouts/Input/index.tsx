@@ -7,8 +7,6 @@ import {
   UseFormRegisterReturn,
 } from "react-hook-form";
 
-import { toProps } from "../../../utils";
-
 import { S } from "./styles";
 
 interface InputProps extends PropsWithChildren {
@@ -56,11 +54,7 @@ function Input({
 
   return (
     <div>
-      <S.C.Label
-        $focus={toProps(focus)}
-        $filled={toProps(value)}
-        $error={toProps(hasError)}
-      >
+      <S.C.Label $focus={focus} $filled={value} $error={hasError}>
         {label && (
           <S.LabelText onClick={() => !disabled && setFocus(true)}>
             {label}
