@@ -11,23 +11,23 @@ const Input = styled.input`
 `;
 
 interface LabelProps {
-  focus: number;
-  filled: number;
-  error: number;
+  $focus: number;
+  $filled: number;
+  $error: number;
 }
 
 const Label = styled.label<LabelProps>`
   ${tw`flex flex-col`}
   ${LabelText} {
-    ${({ focus, filled }) =>
-      focus || filled ? tw`translate-y-0` : tw`translate-y-6`}
-    ${({ focus }) => focus && tw`text-primary`}
-    ${({ error }) => error && tw`text-red-500`}
+    ${({ $focus, $filled }) =>
+      $focus || $filled ? tw`translate-y-0` : tw`translate-y-6`}
+    ${({ $focus }) => $focus && tw`text-primary`}
+    ${({ $error }) => $error && tw`text-red-500`}
   }
 
   ${Input} {
-    ${({ focus }) => (focus ? tw`border-primary` : tw`border-black`)}
-    ${({ error }) => error && tw`border-red-500`}
+    ${({ $focus }) => ($focus ? tw`border-primary` : tw`border-black`)}
+    ${({ $error }) => $error && tw`border-red-500`}
   }
 `;
 

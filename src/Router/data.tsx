@@ -4,7 +4,7 @@ import { AuthTemplate, NonAuthTemplate } from "../templates";
 
 import { HomePage, LoginPage, SignupPage } from "../pages";
 
-import { getAuthData } from "../utils";
+import { getAuthData, getCheffsData } from "../utils";
 
 const routes: RouteObject[] = [
   {
@@ -51,6 +51,14 @@ const routes: RouteObject[] = [
         },
         children: [
           {
+            id: "data",
+            loader: async () => {
+              const cheffs = await getCheffsData();
+
+              return {
+                cheffs,
+              };
+            },
             path: "/",
             element: <HomePage />,
           },

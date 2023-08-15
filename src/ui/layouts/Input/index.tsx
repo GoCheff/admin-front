@@ -57,9 +57,9 @@ function Input({
   return (
     <div>
       <S.C.Label
-        focus={toProps(focus)}
-        filled={toProps(value)}
-        error={toProps(hasError)}
+        $focus={toProps(focus)}
+        $filled={toProps(value)}
+        $error={toProps(hasError)}
       >
         {label && (
           <S.LabelText onClick={() => !disabled && setFocus(true)}>
