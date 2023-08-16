@@ -6,7 +6,7 @@ import {
   NonAuthTemplate,
 } from "../../../templates";
 
-import { HomePage, LoginPage, SignupPage } from "../../../pages";
+import { HomePage, LoginPage } from "../../../pages";
 
 const routes = {
   home: "/",
@@ -25,10 +25,6 @@ const routesObject: RouteObject[] = [
           {
             path: routes.login,
             element: <LoginPage />,
-          },
-          {
-            path: routes.signup,
-            element: <SignupPage />,
           },
         ],
       },

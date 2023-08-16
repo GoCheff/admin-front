@@ -30,7 +30,9 @@ function Loading({
 }
 
 const LoadingVariants = {
-  Screen: Loading.bind(null, { type: "Screen" }),
+  Screen: (props: Omit<LoadingProps, "type">) => (
+    <Loading {...props} type="Screen" />
+  ),
 };
 
 export { Loading, LoadingVariants };
