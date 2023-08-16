@@ -1,16 +1,20 @@
-import { Navigate, Outlet, useRouteLoaderData } from "react-router-dom";
+import { useContext } from "react";
+
+import { Navigate, Outlet, useLoaderData } from "react-router-dom";
+
+import { UserContext } from "../../context";
+
+import { routes } from "../../Router/data";
 
 import { LoadingVariants as Loading } from "../../ui/components";
 
 function AuthTemplate(): JSX.Element {
-  const { user, redirect } = useRouteLoaderData("root") as {
-    user?: any;
-    redirect: string;
-  };
+  const { user } = useContext(UserContext);
+  const { needAuth } = useLoaderData() as { needAuth: boolean };
 
-  if (!user) {
+  if (!user && needAuth) {
     Navigate({
-      to: redirect,
+      to: routes.login,
     });
 
     return <Loading.Screen />;

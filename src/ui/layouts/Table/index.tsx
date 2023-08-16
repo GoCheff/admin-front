@@ -1,8 +1,7 @@
 import { useState } from "react";
 
-import { getPageNumbers } from "./utils";
-
 import { S } from "./styles";
+import { Pagination } from "./components/Pagination";
 
 interface TableProps {
   headers: { key: string; label: string }[];
@@ -29,10 +28,6 @@ function Table({
 
   const needPagination = totalPages > 1;
 
-  function handlePageChange(newPage: number) {
-    setCurrentPage(newPage);
-  }
-
   return (
     <S.Container>
       <S.C.Table>
@@ -43,7 +38,7 @@ function Table({
             ))}
           </S.C.Tr>
         </S.C.THead>
-        <S.C.TBody className="divide-y divide-gray-200">
+        <S.C.TBody>
           {currentData.map((row) => (
             <S.C.Tr key={row.id} $body>
               {headers.map((header) => (
@@ -63,31 +58,12 @@ function Table({
       </S.C.Table>
 
       {needPagination && (
-        <S.Pagination>
-          <S.Previous
-            onClick={() => handlePageChange(currentPage - 1)}
-            disabled={currentPage === 0}
-          >
-            &larr;&nbsp;&nbsp;Anterior
-          </S.Previous>
-          {getPageNumbers({ currentPage, totalPages, maxPageButtons }).map(
-            (page) => (
-              <S.Number
-                key={page}
-                onClick={() => handlePageChange(page)}
-                $active={currentPage === page}
-              >
-                {page + 1}
-              </S.Number>
-            )
-          )}
-          <S.Next
-            onClick={() => handlePageChange(currentPage + 1)}
-            disabled={currentPage === totalPages - 1}
-          >
-            Próximo&nbsp;&nbsp;&rarr;
-          </S.Next>
-        </S.Pagination>
+        <Pagination
+          currentPage={currentPage}
+          setCurrentPage={setCurrentPage}
+          totalPages={totalPages}
+          maxPageButtons={maxPageButtons}
+        />
       )}
     </S.Container>
   );

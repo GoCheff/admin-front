@@ -1,8 +1,6 @@
-async function getCheffsData() {
+function getCheffsData() {
   // TODO: integrar com o backend
-  const getCheffs = async () => {
-    await new Promise((resolve) => setTimeout(resolve, 3000));
-
+  const getCheffs = () => {
     return [
       {
         id: 1,
