@@ -1,3 +1,5 @@
+import { useContext } from "react";
+
 import {
   FieldErrors,
   FieldValues,
@@ -6,13 +8,13 @@ import {
   UseFormWatch,
 } from "react-hook-form";
 
+import { UserContext } from "../../../../context";
+
 import { Button, Form, Input } from "../../../../ui/layouts";
 
 import { Spacer } from "../../../../ui/components";
 
 import { wait } from "../../../../utils";
-import { useContext } from "react";
-import { UserContext } from "../../../../context";
 
 interface LoginFormProps {
   register: UseFormRegister<FieldValues>;
