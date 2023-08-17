@@ -8,7 +8,7 @@ import { routes } from "../../Router/data";
 
 import { LoadingVariants as Loading } from "../../ui/components";
 
-import { Header } from "./components/Header";
+import { Header } from "./components";
 
 import { S } from "./styles";
 
