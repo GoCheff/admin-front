@@ -54,6 +54,13 @@ function Table({
               ))}
             </S.C.Tr>
           ))}
+          {currentData.length === 0 && (
+            <S.C.Tr $body>
+              <S.C.Td $empty colSpan={headers.length}>
+                Nenhum registro encontrado
+              </S.C.Td>
+            </S.C.Tr>
+          )}
         </S.C.TBody>
       </S.C.Table>
 
