@@ -11,6 +11,7 @@ interface ButtonProps extends PropsWithChildren {
   loading?: boolean;
   loadingSize?: "small" | "medium" | "large";
   size?: "small" | "medium" | "large";
+  theme?: "success" | "danger" | "warning" | "info";
 }
 
 function Button({
@@ -21,6 +22,7 @@ function Button({
   loading = false,
   loadingSize = "small",
   size = "medium",
+  theme,
 }: ButtonProps): JSX.Element {
   return (
     <S.C.Button
@@ -29,6 +31,7 @@ function Button({
       disabled={disabled}
       $loading={loading}
       $size={size}
+      $theme={theme}
     >
       <Loading disabled={!loading} size={loadingSize}>
         {children}

@@ -8,13 +8,17 @@ import {
   UseFormWatch,
 } from "react-hook-form";
 
+import { toast } from "../../../../libs";
+
+import { services } from "../../../../services";
+
 import { UserContext } from "../../../../context";
+
+import { ResponseType } from "../../../../entities";
 
 import { Button, Form, Input } from "../../../../ui/layouts";
 
 import { Spacer } from "../../../../ui/components";
-
-import { wait } from "../../../../utils";
 
 interface LoginFormProps {
   register: UseFormRegister<FieldValues>;
@@ -33,11 +37,21 @@ function LoginForm({
 }: LoginFormProps): JSX.Element {
   const { login } = useContext(UserContext);
 
-  async function onSubmit(data: FieldValues) {
-    await wait({ time: 3000 });
+  async function onSubmit({ email, password }: FieldValues) {
+    try {
+      const {
+        data: { token },
+        message,
+      } = await services.admin.login({ email, password });
 
-    console.log({ data });
-    login({ token: "token" });
+      login({ token });
+
+      toast.success(message);
+    } catch (error) {
+      const { message: errorMessage } = error as ResponseType<{}>;
+
+      toast.error(errorMessage);
+    }
   }
 
   function getButtonDisabled() {

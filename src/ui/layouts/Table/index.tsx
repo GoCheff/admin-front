@@ -1,7 +1,10 @@
-import { useState } from "react";
+import { Fragment, useState } from "react";
+
+import { Loading } from "../../components";
+
+import { Pagination } from "./components/Pagination";
 
 import { S } from "./styles";
-import { Pagination } from "./components/Pagination";
 
 interface TableProps {
   headers: { key: string; label: string }[];
@@ -9,6 +12,7 @@ interface TableProps {
   itemsPerPage?: number;
   maxPageButtons?: number;
   columnWidths?: string[];
+  loading?: boolean;
 }
 
 function Table({
@@ -17,6 +21,7 @@ function Table({
   itemsPerPage = 5,
   maxPageButtons = 3,
   columnWidths = headers.map(() => 100 / headers.length + "%"),
+  loading,
 }: TableProps): JSX.Element {
   const [currentPage, setCurrentPage] = useState(0);
 
@@ -39,27 +44,39 @@ function Table({
           </S.C.Tr>
         </S.C.THead>
         <S.C.TBody>
-          {currentData.map((row) => (
-            <S.C.Tr key={row.id} $body>
-              {headers.map((header) => (
-                <S.C.Td
-                  key={header.key}
-                  style={{
-                    width: columnWidths[headers.indexOf(header)],
-                    maxWidth: "1px",
-                  }}
-                >
-                  {row[header.key]}
-                </S.C.Td>
-              ))}
-            </S.C.Tr>
-          ))}
-          {currentData.length === 0 && (
+          {loading ? (
             <S.C.Tr $body>
               <S.C.Td $empty colSpan={headers.length}>
-                Nenhum registro encontrado
+                <div>
+                  <Loading />
+                </div>
               </S.C.Td>
             </S.C.Tr>
+          ) : (
+            <Fragment>
+              {currentData.map((row) => (
+                <S.C.Tr key={row.id} $body>
+                  {headers.map((header) => (
+                    <S.C.Td
+                      key={header.key}
+                      style={{
+                        width: columnWidths[headers.indexOf(header)],
+                        maxWidth: "1px",
+                      }}
+                    >
+                      {row[header.key]}
+                    </S.C.Td>
+                  ))}
+                </S.C.Tr>
+              ))}
+              {currentData.length === 0 && (
+                <S.C.Tr $body>
+                  <S.C.Td $empty colSpan={headers.length}>
+                    Nenhum registro encontrado
+                  </S.C.Td>
+                </S.C.Tr>
+              )}
+            </Fragment>
           )}
         </S.C.TBody>
       </S.C.Table>

@@ -33,7 +33,7 @@ function UserContextProvider({ children }: UserProviderProps): JSX.Element {
   );
 
   async function getUser(): Promise<void> {
-    await wait({ time: 3000 });
+    await wait({ time: 1000 });
 
     if (!token) {
       setUser(null as unknown as UserType);
@@ -44,7 +44,7 @@ function UserContextProvider({ children }: UserProviderProps): JSX.Element {
       data: {
         user: {
           id: 1,
-        },
+        } as UserType,
       },
     };
 

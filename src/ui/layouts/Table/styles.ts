@@ -36,7 +36,11 @@ interface TdProps {
 
 const Td = styled.td<TdProps>`
   ${tw`px-6 py-4 text-sm text-quaternary truncate`}
-  ${({ $empty }) => ($empty ? tw`text-quaternary-200` : tw``)}
+  ${({ $empty }) => ($empty ? tw`text-quaternary-200 text-center` : tw``)}
+
+  & > div {
+    ${tw`flex items-center justify-center`}
+  }
 `;
 
 const Pagination = styled.div`
