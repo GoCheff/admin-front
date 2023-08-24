@@ -9,13 +9,15 @@ import { routes } from "../../Router/data";
 import { LoadingVariants as Loading } from "../../ui/components";
 
 function AuthTemplate(): JSX.Element {
-  const { user } = useContext(UserContext);
+  const { user, loadingUser } = useContext(UserContext);
 
   if (!user) {
     Navigate({
       to: routes.login,
     });
+  }
 
+  if (loadingUser || !user) {
     return <Loading.Screen />;
   }
 

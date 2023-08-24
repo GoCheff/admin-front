@@ -1,15 +1,17 @@
 import { createContext, PropsWithChildren, useMemo, useState } from "react";
 
+import { services } from "../../services";
+
 import { UserType } from "../../entities";
 
 import { useLocalStorage } from "../../hooks";
 
-import { getLocalStorageData, wait } from "../../utils";
+import { getLocalStorageData } from "../../utils";
 
 const defaultContext = {
-  user: (getLocalStorageData("user", "object") || null) as UserType,
+  user: (getLocalStorageData("user", "object") || null) as UserType | null,
   token: (getLocalStorageData("token", "string") || "") as string,
-
+  loadingUser: false,
   getUser: async (): Promise<void> => {
     console.log("getUser");
   },
@@ -26,29 +28,26 @@ const UserContext = createContext({ ...defaultContext });
 interface UserProviderProps extends PropsWithChildren {}
 
 function UserContextProvider({ children }: UserProviderProps): JSX.Element {
-  const [user, setUser] = useState(defaultContext.user);
+  const [user, setUser] = useState<UserType | null>(defaultContext.user);
   const [token, setToken] = useLocalStorage<string>(
     "token",
     defaultContext.token
   );
+  const [loadingUser, setLoadingUser] = useState(defaultContext.loadingUser);
 
   async function getUser(): Promise<void> {
-    await wait({ time: 1000 });
+    setLoadingUser(true);
 
     if (!token) {
-      setUser(null as unknown as UserType);
+      setUser(null);
+      setLoadingUser(false);
       return;
     }
 
-    const { data } = {
-      data: {
-        user: {
-          id: 1,
-        } as UserType,
-      },
-    };
+    const { data: user } = await services.admin.auth({ token });
 
-    setUser(data.user);
+    setUser(user);
+    setLoadingUser(false);
   }
 
   function login(loginData: { token: string } | undefined): void {
@@ -66,11 +65,12 @@ function UserContextProvider({ children }: UserProviderProps): JSX.Element {
     () => ({
       user,
       token,
+      loadingUser,
       getUser,
       login,
       logout,
     }),
-    [user, token]
+    [user, token, loadingUser]
   );
 
   return (

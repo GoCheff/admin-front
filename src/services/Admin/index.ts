@@ -30,6 +30,18 @@ class Admin {
       throw new ResponseModel<{}>(error as any);
     }
   }
+
+  public async auth({ token }: { token: string }) {
+    this.request.setAuthorization(token);
+
+    try {
+      const data = (await this.request.get("/auth")) as any;
+
+      return new ResponseModel<UserType>(data);
+    } catch (error) {
+      throw new ResponseModel<{}>(error as any);
+    }
+  }
 }
 
 const admin = new Admin();
