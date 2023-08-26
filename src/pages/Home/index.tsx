@@ -22,7 +22,13 @@ function HomePage(): JSX.Element {
 
       setNeedRetry(false);
 
-      return (await services.cheffs.getPending({ token })).data;
+      const [{ data: pendingCheffs }, { data: approvedCheffs }] =
+        await Promise.all([
+          services.cheffs.getPending({ token }),
+          services.cheffs.getApproved({ token }),
+        ]);
+
+      return [...pendingCheffs, ...approvedCheffs];
     },
     deps: [needRetry],
   });

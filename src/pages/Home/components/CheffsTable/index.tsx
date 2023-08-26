@@ -45,10 +45,9 @@ function CheffsTable({ cheffs, loading, setNeedRetry }: CheffsTableProps) {
   }
 
   const data = (cheffs || []).map((cheff) => ({
-    id: cheff.id,
-    name: cheff.name,
-    foodType: cheff.mainCuisine,
-    _options: (
+    ...cheff,
+    _createdAt: new Date(cheff.createdAt).toLocaleDateString("pt-BR"),
+    _options: cheff.registerStatus === "pending" && (
       <div style={{ display: "flex", gap: "10px" }}>
         <Button
           size="small"
