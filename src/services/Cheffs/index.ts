@@ -39,7 +39,7 @@ class Cheffs {
     this.request.setAuthorization(token);
 
     try {
-      const data = (await this.request.patch(`/approve/${id}`, {})) as any;
+      const data = (await this.request.put(`/approve/${id}`, {})) as any;
 
       return new ResponseModel<CheffType>(data);
     } catch (error) {
@@ -51,7 +51,7 @@ class Cheffs {
     this.request.setAuthorization(token);
 
     try {
-      const data = (await this.request.patch(`/refuse/${id}`, {})) as any;
+      const data = (await this.request.put(`/refuse/${id}`, {})) as any;
 
       return new ResponseModel<CheffType>(data);
     } catch (error) {

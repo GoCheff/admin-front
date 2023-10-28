@@ -59,7 +59,7 @@ function Table({
                   {headers.map((header) => (
                     <S.C.Td
                       key={header.key}
-                      title={row[header.key]}
+                      title={typeof row[header.key] === "string" ? row[header.key] : ""}
                       style={{
                         width: columnWidths[headers.indexOf(header)],
                         maxWidth: "1px",
