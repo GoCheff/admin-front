@@ -46,6 +46,13 @@ function CheffsTable({ cheffs, loading, setNeedRetry }: CheffsTableProps) {
 
   const data = (cheffs || []).map((cheff) => ({
     ...cheff,
+    _registerReason: cheff.registerReason.startsWith("http") ? (
+      <a href={cheff.registerReason} target="_blank" rel="noreferrer">
+        {cheff.registerReason}
+      </a>
+    ) : (
+      cheff.registerReason
+    ),
     _createdAt: new Date(cheff.createdAt).toLocaleDateString("pt-BR"),
     _options: cheff.registerStatus === "pending" && (
       <div style={{ display: "flex", gap: "10px" }}>
